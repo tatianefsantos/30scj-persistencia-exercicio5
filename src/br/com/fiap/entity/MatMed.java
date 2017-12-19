@@ -29,7 +29,7 @@ public class MatMed {
 	private String fabricante;
 	
 	@ManyToOne(fetch = FetchType.LAZY) 
-	@JoinColumn(name = "cpfpac") 
+	@JoinColumn(name = "cpfpac", referencedColumnName = "cpf") 
 	private Paciente paciente;
 
 	public int getId() {

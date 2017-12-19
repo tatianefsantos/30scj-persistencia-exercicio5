@@ -26,7 +26,7 @@ public class Procedimento {
 	private double preco;
 	
 	@ManyToOne(fetch = FetchType.LAZY) 
-	@JoinColumn(name = "cpfpac") 
+	@JoinColumn(name = "cpfpac", referencedColumnName = "cpf") 
 	private Paciente paciente;
 
 	public int getId() {

@@ -1,6 +1,7 @@
 package br.com.fiap.entity;
 
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -8,8 +9,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -35,11 +34,8 @@ public class Agenda {
 	@Column(name = "descricao")
 	private String descricao;
 
-	@ManyToMany
-	@JoinTable(name = "agenda_paciente", 
-		joinColumns = { @JoinColumn(name = "agenda_id") }, 
-		inverseJoinColumns = { @JoinColumn(name = "paciente_cpf") })
-	private Set<Paciente> pacientes;
+	@ManyToMany(mappedBy="agendas")
+	private Set<Paciente> pacientes = new HashSet<>();
 
 	public int getId() {
 		return id;

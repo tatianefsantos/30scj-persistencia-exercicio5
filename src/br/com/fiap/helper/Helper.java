@@ -1,5 +1,8 @@
 package br.com.fiap.helper;
 
+import java.util.List;
+import java.util.Set;
+
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 
@@ -61,5 +64,17 @@ public class Helper {
 		TypedQuery<Paciente> tQuery = em.createQuery("select p from Paciente p where cpf = :cpf", Paciente.class);
 		tQuery.setParameter("cpf", cpf);
 		return tQuery.getSingleResult();
+	}
+	
+	public List<Procedimento> buscarProcedimentos(String cpf) {
+		TypedQuery<Procedimento> tQuery = em.createQuery("select p from Procedimento p where p.paciente.cpf = :cpf", Procedimento.class);
+		tQuery.setParameter("cpf", cpf);
+		return tQuery.getResultList();
+	}
+	
+	public List<MatMed> buscarMatMeds(String cpf) {
+		TypedQuery<MatMed> tQuery = em.createQuery("select m from MatMed m where m.paciente.cpf = :cpf", MatMed.class);
+		tQuery.setParameter("cpf", cpf);
+		return tQuery.getResultList();
 	}
 }
